@@ -91,10 +91,9 @@ class ArrayUtils:
             self.array = [randint(min_value, max_value) for i in range(indexes)]
         elif self.is_char == True:
             from random import choice
-            letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-            left = letters.index(min_value)
-            right = letters.index(max_value)
-            self.array = [choice(letters[left:right+1]) for i in range(indexes)]
+            left = self.letters.index(min_value)
+            right = self.letters.index(max_value)
+            self.array = [choice(self.letters[left:right+1]) for i in range(indexes)]
     
     def generate_array(self, indexes, min_value, max_value):
         
