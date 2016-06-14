@@ -1,5 +1,6 @@
 # file: back_end.py
-# brief: this script allows user specified parameters (data type, length, values range) to be used to generate a corresponding array, contains input validator, and prints out messages in console.
+# brief: this script allows user specified parameters (data type, length, values range) to be used 
+# to generate a corresponding array, contains input validator, and prints out messages in console.
 # author: Cheng Peng
 
 import sys
@@ -278,5 +279,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
