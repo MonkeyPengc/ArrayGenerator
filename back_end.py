@@ -112,6 +112,9 @@ class ArrayUtils:
             return self.random_generate(indexes, min_value, max_value)
         
         if isinstance(min_value, str) and isinstance(max_value, str):
+            if len(min_value) > 1 or len(max_value) > 1:
+                raise Exception("Invalid array range, only one character is allowed.")
+            
             if not self.is_char:
                 self.is_char = True
             return self.random_generate(indexes, min_value, max_value)
