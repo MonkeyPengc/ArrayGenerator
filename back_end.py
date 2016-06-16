@@ -1,7 +1,8 @@
 # file: back_end.py
-# brief: this script allows user specified parameters (data type, length, values range) to be used 
-# to generate a corresponding array, contains input validator, and prints out messages in console.
 # author: Cheng Peng
+
+"""back_end.py allows user specified parameters (data type, length, values range) to be used 
+to generate a corresponding array, contains input validator, and prints out messages in console."""
 
 import sys
 
@@ -17,8 +18,8 @@ class ArrayUtils:
         self.is_char = char
     
     # -----------------------------------------------------------------------------
-    # remove duplicates
     def remove_duplicates(self):
+        """remove duplicated items in the array"""
         if len(self.array) <= 1:
             raise Exception("The array has less than two items.")
         
@@ -30,9 +31,8 @@ class ArrayUtils:
     # -----------------------------------------------------------------------------
     # sort array
     def sort_array(self):
-        
-        ## the counting sort algorithm takes O(n) time, and O(n) space, where n is the length of array.
-        ## another way to do it is to use the built-in sort function, which takes O(nlgn) time.
+        """ The counting sort takes O(n) time, and O(n) space, where n is the length of array.
+            Another way to do it is to use the built-in sorted function, which takes O(nlgn) time. """
         if self.is_integer:
             highest_item = max(self.array)
             occurance_items = [0] * (highest_item + 1)
@@ -48,7 +48,6 @@ class ArrayUtils:
             self.sorted_array = sorted(self.array)
     
     # -----------------------------------------------------------------------------
-    # find consecutive runs according to sort type
     def is_consecutive(self, prev, current):
         
         if self.is_integer:
@@ -58,7 +57,7 @@ class ArrayUtils:
             return ord(current.lower()) == ord(prev.lower()) + 1  ## compare characters by lowercase
     
     def find_consecutive(self):
-        
+        """find consecutive runs according to sort type"""
         if not self.array:
             return None
         
@@ -83,9 +82,8 @@ class ArrayUtils:
             self.consecutive_array.append(consecutive_tuple)
     
     # -----------------------------------------------------------------------------
-    # generate an array with a specified indexes, each item being random
     def random_generate(self, indexes, min_value, max_value):
-        
+        """generate an array with a specified indexes, each item being random"""
         if self.is_integer == True:
             from random import randint
             self.array = [randint(min_value, max_value) for i in range(indexes)]
@@ -140,14 +138,15 @@ class IntArrayUtils(ArrayUtils):
     def generate_array(self, indexes, min_value, max_value):
         super().generate_array(indexes, min_value, max_value)
 
-    ## sum the contents of each consecutive array and store each of the results as an item in another array
+    
     def sum_consecutive_tuple(self, c_array):
+        """sum the contents of each consecutive array and store each of the results as an item in another array"""
         for items_tuple in c_array:
             if items_tuple:
                 self.sum_contents_array.append(sum(items_tuple))
     
-    ## a function that implements auto function calls and prints out results 
     def function_call_stack(self, **user_args):
+        """implements auto function calls and prints out results"""
         self.generate_array(indexes=user_args['indexes'], min_value=user_args['min_val'], max_value=user_args['max_val'])
         self.remove_duplicates()
         self.sort_array_ascend()
@@ -184,8 +183,8 @@ class CharArrayUtils(ArrayUtils):
     def generate_array(self, indexes, min_value, max_value):
         super().generate_array(indexes, min_value, max_value)
     
-    ## find all characters from the alphabet that not in the consecutive arrays
     def find_missing_chars(self, c_array):
+        """find all characters from the alphabet that not in the consecutive arrays"""
         char_seen_so_far = []  ## O(n) additional space
         for items_tuple in c_array: ## run time is O(n), where n is the number of consecutive char
             for item in items_tuple:
