@@ -29,8 +29,9 @@ class ArrayUtils:
         self.unique_array = list(unique_array)
     
     def sort_array(self):
-        """the counting sort takes O(n) time, and O(n) space, where n is the length of array.
-        another way to do it is to use the built-in sorted function, which takes O(nlgn) time."""
+        """sort the array in ascending order
+        integer uses counting sort, which takes O(n) time and O(n) space, where n is the length of array.
+        char uses built-in sorted function, which takes O(nlgn) time."""
         
         if self.is_integer:
             highest_item = max(self.array)
@@ -82,7 +83,6 @@ class ArrayUtils:
     
     # -----------------------------------------------------------------------------
     def random_generate(self, indexes, min_value, max_value):
-        """generate an array with a specified indexes, each item being random"""
         
         if self.is_integer == True:
             from random import randint
@@ -94,6 +94,7 @@ class ArrayUtils:
             self.array = [choice(self.letters[left:right+1]) for i in range(indexes)]
     
     def generate_array(self, indexes, min_value, max_value):
+        """generate an array with a specified indexes, each item being random"""
         
         if not isinstance(indexes, int):
             raise Exception("Requires an integer as the length of array.")
@@ -273,7 +274,6 @@ def main():
 
         if asktoplay == 1:
             continue
-            
         else:
             print('Bye!')
             sys.exit(0)
